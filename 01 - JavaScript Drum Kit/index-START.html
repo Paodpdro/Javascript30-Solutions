@@ -59,7 +59,12 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  const keysLetters = document.querySelectorAll(".key");
+  keysLetters.forEach((keys) => {
+    keys.addEventListener("click", () => {
+      keys.classList.add("playing")
+    })
+  })
 </script>
 
 
