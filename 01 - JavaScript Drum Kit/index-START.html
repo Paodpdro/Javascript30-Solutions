@@ -59,12 +59,22 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  const keysLetters = document.querySelectorAll(".key");
-  keysLetters.forEach((keys) => {
-    keys.addEventListener("click", () => {
-      keys.classList.add("playing")
-    })
-  })
+  const keysLetters = document.querySelectorAll("kbd");
+  // keysLetters.forEach((keys) => {
+  //   keys.addEventListener("click", () => {
+  //     keys.classList.add("playing")
+  //   })
+  // })
+  document.addEventListener('keydown', (event => {
+    for (let i of keysLetters) {
+      console.log(i)
+      if (i.textContent == event.key) {
+        console.log(event.key);
+        i.parentElement.classList.add("playing");
+      }
+    }
+    
+  }))
 </script>
 
 
