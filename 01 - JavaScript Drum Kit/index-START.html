@@ -65,16 +65,40 @@
   //     keys.classList.add("playing")
   //   })
   // })
-  document.addEventListener('keydown', (event => {
-    for (let i of keysLetters) {
-      console.log(i)
-      if (i.textContent == event.key) {
-        console.log(event.key);
-        i.parentElement.classList.add("playing");
-      }
-    }
+  // document.addEventListener('keydown', (event => {
+  //   for (let i of keysLetters) {
+  //     console.log(i)
+  //     if (i.textContent == event.key.toLocaleLowerCase) {
+  //       console.log(event.key);
+  //       i.parentElement.classList.add("playing");
+  //       return
+  //     }
+  //   }
     
-  }))
+  // }))
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`)
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    if(!audio || !key) return; //stop the function if wrong key
+    audio.currentTime = 0; //rewind start
+    key.classList.add("playing")
+    audio.play();
+    
+  }
+ 
+
+  function removeTransition(e) {
+    if(e.propertyName !== 'transform') {
+      return;  //skip if its not a transform
+    }
+    this.classList.remove("playing")
+  }
+   
+  const keys = document.querySelectorAll(".key");
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  window.addEventListener('keydown', playSound);
+
 </script>
 
 
