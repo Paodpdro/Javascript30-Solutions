@@ -43,11 +43,15 @@ function displayMatches() {
     return `
       <li>
         <span class='name'>${cityName}, ${stateName}</span>
-        <span class='population'>${place.population}</span>
+        <span class='population'>${addCommas(place.population)}</span>
       </li>
     `;
   }).join('');
   suggestions.innerHTML = html;
+}
+
+function addCommas(num) {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const searchInput = document.querySelector('.search');
