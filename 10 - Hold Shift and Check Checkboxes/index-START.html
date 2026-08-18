@@ -149,28 +149,55 @@
   //   }
   // })
 
-  let lastChecked;
+  // let lastChecked;
 
-  const checkBoxes = document.querySelectorAll("input[type='checkbox']")
+  // const checkBoxes = document.querySelectorAll("input[type='checkbox']")
 
-  function handleCheck(e) {
+  // function handleCheck(e) {
+  //   console.log(this)
+  //   let inBetween = false;
+  //   if(e.shiftKey && this.checked) {
+  //     checkBoxes.forEach(checkbox => {
+  //       if(checkbox === this || checkbox === lastChecked) {
+  //         inBetween = !inBetween
+  //       }
+
+  //       if(inBetween) {
+  //         checkbox.checked = true;
+  //       }
+  //     })
+  //   }
+  //   lastChecked = this
+  // }
+
+  // checkBoxes.forEach((checkbox) => checkbox.addEventListener("click", handleCheck))
+
+  const checkoxes = document.querySelectorAll("input[type='checkbox']");
+  let lastClicked = false;
+
+  function handleClick(e) {
     console.log(this)
-    let inBetween = false;
     if(e.shiftKey && this.checked) {
-      checkBoxes.forEach(checkbox => {
-        if(checkbox === this || checkbox === lastChecked) {
-          inBetween = !inBetween
+      let inBetween = false;
+      checkoxes.forEach(checkbox => {
+        if (checkbox === lastClicked || checkbox === this) {
+          inBetween = !inBetween;
         }
-
-        if(inBetween) {
+        
+        if (inBetween) {
           checkbox.checked = true;
         }
       })
     }
-    lastChecked = this
+
+
+    lastClicked = this;
   }
 
-  checkBoxes.forEach((checkbox) => checkbox.addEventListener("click", handleCheck))
+  checkoxes.forEach(checkbox => {
+    checkbox.addEventListener('click', handleClick)
+  })
+
 
 </script>
 </body>
